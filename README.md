@@ -1,6 +1,6 @@
-# ⚡ Drop — Fast & Simple File Hosting Platform 🌐
+# ⚡ File-Drop — Fast & Simple File Hosting Platform 🌐
 
-Welcome to **Drop**, a lightweight and lightning-fast web app designed for effortlessly uploading and sharing files like PDFs and images. Share instantly via public links—no sign-up required! For registered users, enjoy the added benefit of full file history and management. 🚀
+Welcome to **File-Drop**, a lightweight and lightning-fast web app designed for effortlessly uploading and sharing files like PDFs and images. Share instantly via public links—no sign-up required! For registered users, enjoy the added benefit of full file history and management. 🚀
 
 ## 🔑 Key Features
 
@@ -26,13 +26,13 @@ Welcome to **Drop**, a lightweight and lightning-fast web app designed for effor
 
 ## 🚀 Installation Guide
 
-Get **Drop** running locally in just a few steps:
+Get **File-Drop** running locally in just a few steps:
 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/Gazi2050/Drop.git
-   cd Drop
+   git clone https://github.com/Gazi2050/File-Drop.git
+   cd File-Drop
    ```
 
 2. **Install dependencies:**
