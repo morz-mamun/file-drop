@@ -103,58 +103,64 @@ const UploadArea = ({ files, setFiles, errorMessage, setErrorMessage }: UploadAr
 
     return (
         <>
-            <div
-                className={`w-full max-w-xl mx-auto mb-6 p-5 border-2 border-dashed rounded-xl cursor-pointer backdrop-blur-xl shadow-[0_8px_32px_rgba(31,20,10,0.08)] transition-colors duration-300 ease-in-out ${uploadBoxClass}`}
-                onDragEnter={onDragEnter}
-                onDragOver={onDragOver}
-                onDragLeave={onDragLeave}
-                onDrop={onDrop}
-                onClick={openFileDialog}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') openFileDialog();
-                }}
-            >
-                <input
-                    type="file"
-                    multiple
-                    ref={inputRef}
-                    onChange={onFileChange}
-                    className="hidden"
-                    accept="image/*,application/pdf"
-                />
+            <div className="relative w-full max-w-xl mx-auto mb-6">
+                <div className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-brand-mint/50 blur-3xl opacity-70" />
 
-                {files.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center space-y-4 py-12">
-                        <div className="w-14 h-14 rounded-full bg-white/50 backdrop-blur-sm border border-white/60 flex items-center justify-center">
-                            <FiUploadCloud className="h-7 w-7 text-body-strong" />
+                <div
+                    className={`relative w-full p-5 border-2 border-dashed rounded-xl cursor-pointer backdrop-blur-xl shadow-[0_8px_32px_rgba(31,20,10,0.08)] transition-colors duration-300 ease-in-out overflow-hidden ${uploadBoxClass}`}
+                    onDragEnter={onDragEnter}
+                    onDragOver={onDragOver}
+                    onDragLeave={onDragLeave}
+                    onDrop={onDrop}
+                    onClick={openFileDialog}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') openFileDialog();
+                    }}
+                >
+                    <div className="pointer-events-none absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-mint/70 blur-[70px]" />
+
+                    <input
+                        type="file"
+                        multiple
+                        ref={inputRef}
+                        onChange={onFileChange}
+                        className="hidden"
+                        accept="image/*,application/pdf"
+                    />
+
+                    {files.length === 0 ? (
+                        <div className="relative flex flex-col items-center justify-center space-y-4 py-12">
+                            <div className="w-14 h-14 rounded-full bg-white/50 backdrop-blur-sm border border-white/60 flex items-center justify-center">
+                                <FiUploadCloud className="h-7 w-7 text-body-strong" />
+                            </div>
+                            <p className="text-lg font-semibold text-ink">Drag and drop files here</p>
+                            <p className="text-sm text-muted">or click to browse</p>
+                            <button
+                                type="button"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    openFileDialog();
+                                }}
+                                className="px-5 h-11 bg-primary text-on-primary rounded-md font-semibold transition-opacity cursor-pointer hover:opacity-90"
+                            >
+                                Select Files
+                            </button>
                         </div>
-                        <p className="text-lg font-semibold text-ink">Drag and drop files here</p>
-                        <p className="text-sm text-muted">or click to browse</p>
-                        <button
-                            type="button"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                openFileDialog();
-                            }}
-                            className="px-5 h-11 bg-primary text-on-primary rounded-md font-semibold transition-opacity cursor-pointer hover:opacity-90"
-                        >
-                            Select Files
-                        </button>
-                    </div>
-                ) : (
-                    <div className="flex flex-wrap justify-center items-center gap-6 py-4 max-h-[240px] overflow-y-auto">
-                        {files.map((file, index) => (
-                            <FilePreview
-                                key={index}
-                                file={file}
-                                previewUrl={previews[index]}
-                                onRemove={() => removeFile(index)}
-                            />
-                        ))}
-                    </div>
-                )}
+                    ) : (
+                        <div className="relative flex flex-wrap justify-center items-center gap-6 py-4 max-h-[240px] overflow-y-auto">
+                            {files.map((file, index) => (
+                                <FilePreview
+                                    key={index}
+                                    file={file}
+                                    previewUrl={previews[index]}
+                                    onRemove={() => removeFile(index)}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
 
             {errorMessage && <p className="text-error mb-4 text-sm font-medium">{errorMessage}</p>}
