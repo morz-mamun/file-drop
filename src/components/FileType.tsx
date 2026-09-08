@@ -2,28 +2,29 @@ import { fileTypes } from "@/constants/data";
 
 const FileType = () => {
     return (
-        <section className="py-16 bg-white text-black">
+        <section className="py-20 bg-canvas">
             <div className="container mx-auto px-5 max-w-3xl">
-                <h2 className="text-4xl font-bold text-center mb-6">
-                    Supported File Types
+                <h2 className="font-display text-3xl md:text-4xl text-center text-ink mb-4">
+                    Supported file types
                 </h2>
-                <p className="text-center text-gray-600 mb-12 text-base max-w-xl mx-auto">
-                    Drop supports a wide range of file formats to meet all your sharing needs.
+                <p className="text-center text-muted mb-12 text-base max-w-xl mx-auto leading-relaxed">
+                    File-Drop supports a wide range of file formats to meet all your sharing needs.
                 </p>
 
-                <ul className="divide-y divide-gray-200 border border-gray-200 rounded-lg overflow-hidden">
+                <div className="flex flex-wrap justify-center gap-3">
                     {fileTypes.map(({ type, label }) => (
-                        <li
+                        <div
                             key={type}
-                            className="flex items-center justify-between px-6 py-4 hover:bg-gray-50 transition-colors"
+                            className="flex items-center gap-2.5 bg-surface-card border border-hairline rounded-pill px-5 py-2.5 hover:bg-surface-strong transition-colors"
                         >
-                            <span className="font-mono font-semibold text-lg tracking-wide">
+                            <span className="font-mono font-bold text-sm tracking-wide text-ink">
                                 {type}
                             </span>
-                            <span className="text-sm text-gray-500">{label}</span>
-                        </li>
+                            <span className="w-1 h-1 rounded-full bg-muted-soft" />
+                            <span className="text-xs text-muted">{label}</span>
+                        </div>
                     ))}
-                </ul>
+                </div>
             </div>
         </section>
     );

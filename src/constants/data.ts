@@ -92,9 +92,9 @@ export const PricingData = [
 
 export const faqData = [
     {
-        question: "Is Drop really free to use?",
+        question: "Is File-Drop really free to use?",
         answer:
-            "Yes, Drop is 100% free with no hidden fees or premium plans.\nAll features are available to everyone.",
+            "Yes, File-Drop is 100% free with no hidden fees or premium plans.\nAll features are available to everyone.",
     },
     {
         question: "What happens if I don’t sign in?",
@@ -102,9 +102,9 @@ export const faqData = [
             "Your files are stored permanently, but the link is lost if you close or reload the tab.\nSign in to keep access and manage your uploads.",
     },
     {
-        question: "Can I use Drop links directly on my website?",
+        question: "Can I use File-Drop links directly on my website?",
         answer:
-            "Yes, Drop links work on websites, blogs, or anywhere online.\nThey provide direct, seamless access to your files.",
+            "Yes, File-Drop links work on websites, blogs, or anywhere online.\nThey provide direct, seamless access to your files.",
     },
     {
         question: "How long are my files stored?",
@@ -140,6 +140,6 @@ export const supportLinks = [
 
 export const socialLinks = [
     { icon: FaTwitter, href: 'https://x.com', label: 'Twitter' },
-    { icon: FaGithub, href: 'https://github.com/Gazi2050/Drop', label: 'GitHub' },
+    { icon: FaGithub, href: 'https://github.com/Gazi2050/File-Drop', label: 'GitHub' },
     { icon: FaReddit, href: 'https://www.reddit.com', label: 'Reddit' },
 ];

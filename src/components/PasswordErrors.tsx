@@ -8,11 +8,11 @@ const PasswordErrors: React.FC<PasswordErrorsProps> = ({ error }) => {
     const messages = error.message?.toString().split(', ') || [];
 
     if (messages.length === 1) {
-        return <p className="text-xs text-red-500 mt-1">{messages[0]}</p>;
+        return <p className="text-xs text-error mt-1">{messages[0]}</p>;
     }
 
     return (
-        <ul className="text-xs text-red-500 mt-1 list-disc list-inside space-y-0.5">
+        <ul className="text-xs text-error mt-1 list-disc list-inside space-y-0.5">
             {messages.map((msg, idx) => (
                 <li key={idx}>{msg}</li>
             ))}

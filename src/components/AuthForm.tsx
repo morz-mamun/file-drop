@@ -52,14 +52,14 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-12">
-            <div className="w-full max-w-md bg-white border border-gray-200 rounded-2xl shadow-md p-8 sm:p-10 transition-all">
-                <Link href="/" className="flex justify-center items-center space-x-3 mb-6">
-                    <Image src="/logo.png" alt="Drop Logo" width={40} height={40} />
-                    <span className="text-xl font-bold text-gray-900 select-none">Drop</span>
+        <div className="min-h-screen flex items-center justify-center bg-surface-soft px-4 py-12">
+            <div className="w-full max-w-md bg-canvas border border-hairline rounded-xl p-8 sm:p-10">
+                <Link href="/" className="flex justify-center items-center gap-2.5 mb-6">
+                    <Image src="/logo.png" alt="File-Drop Logo" width={36} height={36} />
+                    <span className="text-lg font-display text-ink select-none">File-Drop</span>
                 </Link>
 
-                <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">
+                <h2 className="font-display text-2xl text-center text-ink mb-6">
                     {isLogin ? 'Welcome back' : 'Create an account'}
                 </h2>
 
@@ -70,11 +70,11 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
                             type="email"
                             placeholder="Email"
                             {...register('email', { required: 'Email is required' })}
-                            className={`w-full px-4 py-2.5 border ${errors.email ? 'border-red-500' : 'border-gray-300'
-                                } rounded-lg text-sm bg-gray-50 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black/80 transition`}
+                            className={`w-full h-11 px-4 border ${errors.email ? 'border-error' : 'border-hairline'
+                                } rounded-md text-sm bg-surface-soft placeholder-muted-soft focus:outline-none focus:ring-2 focus:ring-ink/20 transition`}
                         />
                         {errors.email && (
-                            <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>
+                            <p className="text-xs text-error mt-1">{errors.email.message}</p>
                         )}
                     </div>
 
@@ -97,20 +97,20 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
                                         return errs.length > 0 ? errs.join(', ') : true;
                                     },
                                 })}
-                                className={`w-full px-4 py-2.5 pr-10 border ${errors.password ? 'border-red-500' : 'border-gray-300'
-                                    } rounded-lg text-sm bg-gray-50 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black/80 transition`}
+                                className={`w-full h-11 px-4 pr-10 border ${errors.password ? 'border-error' : 'border-hairline'
+                                    } rounded-md text-sm bg-surface-soft placeholder-muted-soft focus:outline-none focus:ring-2 focus:ring-ink/20 transition`}
                             />
                             <button
                                 type="button"
                                 onClick={() => setShowPassword(!showPassword)}
-                                className="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-black"
+                                className="absolute inset-y-0 right-3 flex items-center text-muted hover:text-ink"
                                 tabIndex={-1}
                                 aria-label="Toggle password visibility"
                             >
                                 {showPassword ? (
-                                    <FaEyeSlash className="w-5 h-5" />
+                                    <FaEyeSlash className="w-4 h-4" />
                                 ) : (
-                                    <FaEye className="w-5 h-5" />
+                                    <FaEye className="w-4 h-4" />
                                 )}
                             </button>
                         </div>
@@ -119,16 +119,16 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 
                     {/* Form error */}
                     {formError && (
-                        <p className="text-sm text-red-500 text-center">{formError}</p>
+                        <p className="text-sm text-error text-center">{formError}</p>
                     )}
 
                     {/* Submit */}
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className={`w-full py-2.5 text-sm font-semibold rounded-lg transition active:scale-[0.98] cursor-pointer ${isLoading
-                            ? 'bg-gray-700 cursor-not-allowed text-gray-300'
-                            : 'bg-black text-white hover:bg-gray-900 hover:shadow-md'
+                        className={`w-full h-11 text-sm font-semibold rounded-md transition active:scale-[0.98] cursor-pointer ${isLoading
+                            ? 'bg-muted-soft cursor-not-allowed text-white'
+                            : 'bg-primary text-on-primary hover:opacity-90'
                             }`}
                     >
                         {isLoading
@@ -142,11 +142,11 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
                 </form>
 
                 {/* Switch */}
-                <p className="text-sm text-gray-500 text-center mt-6">
+                <p className="text-sm text-muted text-center mt-6">
                     {isLogin ? "Don't have an account? " : 'Already have an account? '}
                     <Link
                         href={isLogin ? '/signup' : '/login'}
-                        className="text-black font-medium hover:underline underline-offset-2"
+                        className="text-ink font-semibold hover:underline underline-offset-2"
                     >
                         {isLogin ? 'Sign up' : 'Log in'}
                     </Link>

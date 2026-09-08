@@ -5,27 +5,27 @@ import Link from 'next/link';
 
 const Footer = () => {
     return (
-        <footer className="bg-white text-black border-t border-gray-200 mt-auto py-12">
+        <footer className="bg-surface-soft text-body mt-auto pt-16 pb-10">
             <div className="max-w-6xl mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
                     {/* Logo & About */}
-                    <div>
-                        <Link href="/" aria-label="Homepage" className="flex items-center space-x-3 mb-4">
-                            <Image src="/logo.png" alt="logo" width={50} height={50} />
-                            <span className="text-2xl font-bold text-gray-900 select-none">Drop</span>
+                    <div className="lg:col-span-1">
+                        <Link href="/" aria-label="Homepage" className="flex items-center space-x-2.5 mb-4">
+                            <Image src="/logo.png" alt="logo" width={36} height={36} />
+                            <span className="text-xl font-display text-ink select-none">File-Drop</span>
                         </Link>
-                        <p className="text-sm text-gray-600 leading-relaxed mb-6">
+                        <p className="text-sm text-muted leading-relaxed mb-6">
                             A simple and fast way to upload and share files instantly. Completely free, forever.
                         </p>
-                        <div className="flex space-x-3">
+                        <div className="flex gap-3">
                             {socialLinks.map(({ icon: Icon, href, label }, idx) => (
                                 <a
                                     key={idx}
                                     href={href}
                                     aria-label={label}
-                                    className="group w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 transition duration-200 hover:bg-black"
+                                    className="group w-10 h-10 flex items-center justify-center rounded-full border border-hairline transition-colors hover:bg-ink"
                                 >
-                                    <Icon className="w-5 h-5 text-gray-700 transition-colors group-hover:text-white" />
+                                    <Icon className="w-4 h-4 text-body transition-colors group-hover:text-white" />
                                 </a>
                             ))}
                         </div>
@@ -33,11 +33,11 @@ const Footer = () => {
 
                     {/* Product Links */}
                     <div>
-                        <h3 className="text-base font-semibold mb-4">Product</h3>
-                        <ul className="space-y-3 text-sm text-gray-600">
+                        <h3 className="text-sm font-semibold text-ink mb-4">Product</h3>
+                        <ul className="space-y-3 text-sm text-muted">
                             {productLinks.map((link, index) => (
                                 <li key={index}>
-                                    <a href={link.href} className="hover:text-black transition-colors">
+                                    <a href={link.href} className="hover:text-ink transition-colors">
                                         {link.label}
                                     </a>
                                 </li>
@@ -47,11 +47,11 @@ const Footer = () => {
 
                     {/* Support Links */}
                     <div>
-                        <h3 className="text-base font-semibold mb-4">Support</h3>
-                        <ul className="space-y-3 text-sm text-gray-600">
+                        <h3 className="text-sm font-semibold text-ink mb-4">Support</h3>
+                        <ul className="space-y-3 text-sm text-muted">
                             {supportLinks.map((link, index) => (
                                 <li key={index}>
-                                    <a href={link.href} className="hover:text-black transition-colors">
+                                    <a href={link.href} className="hover:text-ink transition-colors">
                                         {link.label}
                                     </a>
                                 </li>
@@ -61,24 +61,24 @@ const Footer = () => {
 
                     {/* Newsletter */}
                     <div>
-                        <h3 className="text-base font-semibold mb-4">Stay Updated</h3>
-                        <p className="text-sm text-gray-600 mb-5 leading-relaxed">
+                        <h3 className="text-sm font-semibold text-ink mb-4">Stay updated</h3>
+                        <p className="text-sm text-muted mb-5 leading-relaxed">
                             Subscribe to our newsletter for updates and new features.
                         </p>
                         <form
                             onSubmit={(e) => e.preventDefault()}
-                            className="flex max-w-md mx-auto"
+                            className="flex"
                         >
                             <input
                                 type="email"
                                 placeholder="Your email"
                                 aria-label="Email address"
-                                className="flex-1 px-4 py-3 rounded-l-lg bg-gray-100 text-gray-900 placeholder-gray-400 transition focus:outline-none border border-gray-200"
+                                className="flex-1 min-w-0 px-4 py-2.5 rounded-l-md bg-canvas text-ink placeholder-muted-soft transition focus:outline-none border border-hairline border-r-0"
                                 required
                             />
                             <button
                                 type="submit"
-                                className="px-6 py-3 rounded-r-lg bg-black text-white text-sm font-semibold hover:bg-gray-900 transition cursor-pointer"
+                                className="px-5 py-2.5 rounded-r-md bg-primary text-on-primary text-sm font-semibold hover:opacity-90 transition-opacity cursor-pointer"
                             >
                                 Subscribe
                             </button>
@@ -86,8 +86,8 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="border-t border-gray-200 pt-6 text-center text-sm text-gray-500 select-none">
-                    &copy; {new Date().getFullYear()} Drop. All rights reserved.
+                <div className="border-t border-hairline pt-6 text-center text-sm text-muted-soft select-none">
+                    &copy; {new Date().getFullYear()} File-Drop. All rights reserved.
                 </div>
             </div>
         </footer>

@@ -97,12 +97,14 @@ const UploadArea = ({ files, setFiles, errorMessage, setErrorMessage }: UploadAr
         setFiles(updated);
     }
 
-    const uploadBoxClass = dragActive ? 'border-black bg-gray-100' : 'border-gray-300 bg-gray-50';
+    const uploadBoxClass = dragActive
+        ? 'border-ink/40 bg-white/50'
+        : 'border-white/60 bg-white/25 hover:bg-white/35 hover:border-white/80';
 
     return (
         <>
             <div
-                className={`w-full max-w-xl mx-auto mb-6 p-5 border-2 border-dashed rounded-xl cursor-pointer transition-colors duration-300 ease-in-out ${uploadBoxClass}`}
+                className={`w-full max-w-xl mx-auto mb-6 p-5 border-2 border-dashed rounded-xl cursor-pointer backdrop-blur-xl shadow-[0_8px_32px_rgba(31,20,10,0.08)] transition-colors duration-300 ease-in-out ${uploadBoxClass}`}
                 onDragEnter={onDragEnter}
                 onDragOver={onDragOver}
                 onDragLeave={onDragLeave}
@@ -125,16 +127,18 @@ const UploadArea = ({ files, setFiles, errorMessage, setErrorMessage }: UploadAr
 
                 {files.length === 0 ? (
                     <div className="flex flex-col items-center justify-center space-y-4 py-12">
-                        <FiUploadCloud className="h-12 w-12 text-gray-600" />
-                        <p className="text-lg font-medium">Drag and drop files here</p>
-                        <p className="text-sm text-gray-500">or click to browse</p>
+                        <div className="w-14 h-14 rounded-full bg-white/50 backdrop-blur-sm border border-white/60 flex items-center justify-center">
+                            <FiUploadCloud className="h-7 w-7 text-body-strong" />
+                        </div>
+                        <p className="text-lg font-semibold text-ink">Drag and drop files here</p>
+                        <p className="text-sm text-muted">or click to browse</p>
                         <button
                             type="button"
                             onClick={(e) => {
                                 e.stopPropagation();
                                 openFileDialog();
                             }}
-                            className="px-5 py-2.5 bg-black text-white rounded-lg hover:bg-gray-900 transition-colors duration-300 cursor-pointer"
+                            className="px-5 h-11 bg-primary text-on-primary rounded-md font-semibold transition-opacity cursor-pointer hover:opacity-90"
                         >
                             Select Files
                         </button>
@@ -153,7 +157,7 @@ const UploadArea = ({ files, setFiles, errorMessage, setErrorMessage }: UploadAr
                 )}
             </div>
 
-            {errorMessage && <p className="text-red-600 mb-4">{errorMessage}</p>}
+            {errorMessage && <p className="text-error mb-4 text-sm font-medium">{errorMessage}</p>}
         </>
     );
 };

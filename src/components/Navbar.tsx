@@ -36,22 +36,22 @@ const Navbar = () => {
     };
 
     return (
-        <header className="bg-white shadow-sm sticky top-0 z-50">
-            <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between relative">
+        <header className="bg-canvas/90 backdrop-blur-sm sticky top-0 z-50 border-b border-hairline">
+            <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between relative">
                 {/* Logo */}
-                <Link href="/" aria-label="Homepage" className="flex items-center space-x-3">
-                    <Image src="/logo.png" alt="logo" width={50} height={50} />
-                    <span className="text-2xl font-bold text-gray-900 select-none">Drop</span>
+                <Link href="/" aria-label="Homepage" className="flex items-center space-x-2.5">
+                    <Image src="/logo.png" alt="logo" width={36} height={36} />
+                    <span className="text-xl font-display text-ink select-none">File-Drop</span>
                 </Link>
 
                 {/* Center nav (desktop) */}
-                <nav className="hidden lg:flex space-x-6 absolute left-1/2 transform -translate-x-1/2">
+                <nav className="hidden lg:flex items-center gap-1 absolute left-1/2 transform -translate-x-1/2">
                     {navLinks.map(({ name, href }) => (
                         <a
                             key={name}
                             href={href}
                             onClick={(e) => handleNavClick(e, href)}
-                            className="text-gray-700 hover:bg-gray-200 rounded-md px-3 py-2 font-medium transition-all duration-300 ease-in-out hover:scale-[1.04]"
+                            className="text-sm font-medium text-body hover:text-ink hover:bg-surface-card rounded-md px-3.5 py-2 transition-colors"
                         >
                             {name}
                         </a>
@@ -60,32 +60,32 @@ const Navbar = () => {
 
                 {/* Desktop actions */}
                 {isAuthenticated ? (
-                    <div className="hidden lg:flex items-center space-x-5">
+                    <div className="hidden lg:flex items-center gap-3">
                         <button
                             onClick={handleLogout}
                             disabled={isLoggingOut}
-                            className="text-gray-700 hover:bg-gray-200 rounded-md px-4 py-2 transition hover:scale-[1.05] disabled:opacity-50"
+                            className="text-sm font-medium text-body hover:text-ink hover:bg-surface-card rounded-md px-4 py-2 transition-colors disabled:opacity-50"
                         >
                             {isLoggingOut ? 'Logging out...' : 'Logout'}
                         </button>
                         <Link
                             href="/dashboard"
-                            className="px-5 py-2 bg-black text-white rounded-lg font-semibold transition hover:bg-gray-800 hover:scale-[1.04]"
+                            className="px-5 h-11 flex items-center bg-primary text-on-primary rounded-md text-sm font-semibold transition hover:opacity-90"
                         >
                             Dashboard
                         </Link>
                     </div>
                 ) : (
-                    <div className="hidden lg:flex items-center space-x-5">
+                    <div className="hidden lg:flex items-center gap-3">
                         <Link
                             href="/login"
-                            className="text-gray-700 hover:bg-gray-200 rounded-md px-4 py-2 transition hover:scale-[1.05]"
+                            className="text-sm font-medium text-body hover:text-ink hover:bg-surface-card rounded-md px-4 py-2 transition-colors"
                         >
                             Login
                         </Link>
                         <Link
                             href="/signup"
-                            className="px-5 py-2 bg-black text-white rounded-lg font-semibold transition hover:bg-gray-800 hover:scale-[1.04]"
+                            className="px-5 h-11 flex items-center bg-primary text-on-primary rounded-md text-sm font-semibold transition hover:opacity-90"
                         >
                             Sign up
                         </Link>
@@ -94,27 +94,27 @@ const Navbar = () => {
 
                 {/* Mobile toggle */}
                 <button
-                    className="lg:hidden text-gray-900"
+                    className="lg:hidden text-ink"
                     aria-label="Toggle menu"
                     onClick={() => setIsOpen(!isOpen)}
                 >
-                    {isOpen ? <FiX size={28} /> : <FiMenu size={28} />}
+                    {isOpen ? <FiX size={26} /> : <FiMenu size={26} />}
                 </button>
             </div>
 
             {/* Mobile menu */}
             <nav
-                className={`lg:hidden bg-white border-t border-gray-200 overflow-hidden transition-max-height duration-300 ease-in-out ${isOpen ? 'max-h-96' : 'max-h-0'
+                className={`lg:hidden bg-canvas border-t border-hairline overflow-hidden transition-[max-height] duration-300 ease-in-out ${isOpen ? 'max-h-96' : 'max-h-0'
                     }`}
                 aria-label="Mobile Navigation"
             >
-                <div className="flex flex-col px-6 py-4 space-y-4">
+                <div className="flex flex-col px-6 py-4 gap-1">
                     {navLinks.map(({ name, href }) => (
                         <a
                             key={name}
                             href={href}
                             onClick={(e) => handleNavClick(e, href)}
-                            className="text-gray-700 hover:bg-gray-200 rounded-md px-3 py-2 transition hover:scale-[1.03]"
+                            className="text-sm font-medium text-body hover:bg-surface-card rounded-md px-3 py-2.5 transition-colors"
                         >
                             {name}
                         </a>
@@ -127,14 +127,14 @@ const Navbar = () => {
                                     await handleLogout();
                                 }}
                                 disabled={isLoggingOut}
-                                className="text-gray-700 hover:bg-gray-200 rounded-md px-3 py-2 transition hover:scale-[1.03] disabled:opacity-50"
+                                className="text-left text-sm font-medium text-body hover:bg-surface-card rounded-md px-3 py-2.5 transition-colors disabled:opacity-50"
                             >
                                 {isLoggingOut ? 'Logging out...' : 'Logout'}
                             </button>
                             <Link
                                 href="/dashboard"
                                 onClick={() => setIsOpen(false)}
-                                className="px-4 py-2 bg-black text-white rounded-lg font-semibold transition hover:bg-gray-800 hover:scale-[1.05] text-center"
+                                className="mt-2 px-4 py-2.5 bg-primary text-on-primary rounded-md text-sm font-semibold text-center"
                             >
                                 Dashboard
                             </Link>
@@ -144,14 +144,14 @@ const Navbar = () => {
                             <Link
                                 href="/login"
                                 onClick={() => setIsOpen(false)}
-                                className="text-gray-700 hover:bg-gray-200 rounded-md px-3 py-2 transition hover:scale-[1.03] text-center"
+                                className="text-sm font-medium text-body hover:bg-surface-card rounded-md px-3 py-2.5 transition-colors text-center"
                             >
                                 Login
                             </Link>
                             <Link
                                 href="/signup"
                                 onClick={() => setIsOpen(false)}
-                                className="px-4 py-2 bg-black text-white rounded-lg font-semibold transition hover:bg-gray-800 hover:scale-[1.05] text-center"
+                                className="mt-2 px-4 py-2.5 bg-primary text-on-primary rounded-md text-sm font-semibold text-center"
                             >
                                 Sign up
                             </Link>

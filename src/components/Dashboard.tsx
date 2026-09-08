@@ -46,11 +46,11 @@ const Dashboard = () => {
     const totalStorageMB =
         files.reduce((acc, file) => acc + parseInt(file.filesize || '0'), 0) / (1024 * 1024);
 
-    const stats = {
-        filesUploaded: files.length,
-        totalStorage: `${totalStorageMB.toFixed(2)} MB`,
-        plan: 'Free',
-    };
+    const stats = [
+        { label: 'Files Uploaded', value: files.length, bg: 'bg-brand-lavender' },
+        { label: 'Storage Used', value: `${totalStorageMB.toFixed(2)} MB`, bg: 'bg-brand-peach' },
+        { label: 'Plan', value: 'Free', bg: 'bg-brand-mint' },
+    ];
 
     const handleDelete = (fileId: string) => {
         const deletedFile = files.find((file) => file.id === fileId);
@@ -84,50 +84,48 @@ const Dashboard = () => {
 
 
     return (
-        <div className="min-h-screen bg-white py-10 px-4 text-gray-800">
-            <div className="max-w-6xl mx-auto space-y-12">
+        <div className="min-h-screen bg-canvas py-10 px-4 text-body">
+            <div className="max-w-6xl mx-auto space-y-10">
                 {/* Header */}
                 <div className="flex justify-between items-center">
-                    <Link href="/" className="flex items-center space-x-3">
-                        <Image src="/logo.png" alt="logo" width={50} height={50} />
-                        <span className="text-2xl font-bold text-gray-900 select-none">Drop</span>
+                    <Link href="/" className="flex items-center gap-2.5">
+                        <Image src="/logo.png" alt="logo" width={36} height={36} />
+                        <span className="text-xl font-display text-ink select-none">File-Drop</span>
                     </Link>
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-black text-white font-semibold shadow-sm hover:bg-gray-900 active:scale-95 transition focus:outline-none hover:scale-[1.04]"
+                        className="inline-flex items-center gap-2 h-11 px-5 rounded-md bg-primary text-on-primary font-semibold transition hover:opacity-90 active:scale-95 focus:outline-none"
                     >
-                        <FiUpload className="w-5 h-5" />
+                        <FiUpload className="w-4 h-4" />
                         Upload File
                     </Link>
                 </div>
 
                 {/* Profile */}
-                <div className="relative bg-gray-50 border border-gray-200 rounded-xl p-6 pr-14 flex flex-col sm:flex-row sm:items-center justify-between min-h-[120px]">
+                <div className="relative bg-surface-card border border-hairline rounded-xl p-6 flex flex-col sm:flex-row sm:items-center justify-between min-h-[120px]">
                     {profileLoading ? (
                         <UserSkeleton />
                     ) : (
                         <>
-
-
                             <div className="flex items-center gap-5">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
                                     src={profilepic}
                                     alt="Profile"
-                                    className="w-20 h-20 rounded-full object-cover border border-gray-300"
+                                    className="w-20 h-20 rounded-full object-cover border-2 border-canvas shadow-sm"
                                 />
                                 <div>
-                                    <h2 className="text-lg font-semibold">{username}</h2>
-                                    <p className="text-sm text-gray-500">{email}</p>
+                                    <h2 className="text-lg font-semibold text-ink">{username}</h2>
+                                    <p className="text-sm text-muted">{email}</p>
                                 </div>
                             </div>
 
-                            <div className="mt-4 sm:mt-0 text-sm text-gray-700 sm:text-right space-y-1">
+                            <div className="mt-4 sm:mt-0 text-sm text-body sm:text-right space-y-1">
                                 {created_at && (
                                     <p className="flex items-center justify-start sm:justify-end gap-2">
-                                        <FaCalendarAlt className="text-gray-500" />
+                                        <FaCalendarAlt className="text-muted" />
                                         <span>Joined:</span>
-                                        <span className="font-semibold text-gray-800">{created_at}</span>
+                                        <span className="font-semibold text-ink">{created_at}</span>
                                     </p>
                                 )}
 
@@ -138,28 +136,24 @@ const Dashboard = () => {
 
                 {/* Stats */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    {[
-                        { label: 'Files Uploaded', value: stats.filesUploaded },
-                        { label: 'Storage Used', value: stats.totalStorage },
-                        { label: 'Plan', value: stats.plan },
-                    ].map((stat, idx) => (
+                    {stats.map((stat, idx) => (
                         <div
                             key={idx}
-                            className="rounded-xl border border-gray-200 bg-white p-6 text-center"
+                            className={`rounded-xl ${stat.bg} p-6 text-center`}
                         >
-                            <p className="text-sm text-gray-500">{stat.label}</p>
-                            <p className="text-xl font-semibold mt-1">{stat.value}</p>
+                            <p className="text-sm text-ink/70 font-medium">{stat.label}</p>
+                            <p className="text-2xl font-display text-ink mt-1">{stat.value}</p>
                         </div>
                     ))}
                 </div>
 
                 {/* Files Table */}
-                <div className="border border-gray-200 rounded-xl overflow-x-auto">
+                <div className="border border-hairline rounded-xl overflow-x-auto bg-canvas">
                     {loading ? (
-                        <div className="text-center py-10 text-gray-500">Loading files...</div>
+                        <div className="text-center py-10 text-muted">Loading files...</div>
                     ) : (
                         <table className="min-w-full text-sm text-left">
-                            <thead className="bg-gray-100 text-gray-700 text-[13px] uppercase tracking-wide border-b border-gray-200">
+                            <thead className="bg-surface-soft text-body text-[12px] uppercase tracking-wide border-b border-hairline">
                                 <tr>
                                     <th className="px-6 py-4 font-semibold">File Name</th>
                                     <th className="px-6 py-4 font-semibold">Type</th>
@@ -172,16 +166,16 @@ const Dashboard = () => {
                                 {files.map((file) => (
                                     <tr
                                         key={file?.id}
-                                        className="border-t border-gray-100 hover:bg-gray-50 transition"
+                                        className="border-t border-hairline hover:bg-surface-soft transition-colors"
                                     >
-                                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        <td className="px-6 py-4 font-medium text-ink whitespace-nowrap">
                                             {file?.filename}
                                         </td>
-                                        <td className="px-6 py-4 text-gray-600">{file?.filetype}</td>
-                                        <td className="px-6 py-4 text-gray-600">
+                                        <td className="px-6 py-4 text-body">{file?.filetype}</td>
+                                        <td className="px-6 py-4 text-body">
                                             {(parseInt(file?.filesize) / (1024 * 1024)).toFixed(2)} MB
                                         </td>
-                                        <td className="px-6 py-4 text-gray-600">
+                                        <td className="px-6 py-4 text-body">
                                             {dayjs(file?.created_at).format('MMMM D, YYYY')}
                                         </td>
                                         <td className="px-6 py-4 text-center">
@@ -190,16 +184,15 @@ const Dashboard = () => {
                                                     href={file?.fileurl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="inline-flex items-center justify-center px-2.5 py-1.5 rounded-md bg-gray-100 text-gray-700 text-sm hover:bg-gray-200 hover:text-black transition focus:outline-none focus:ring-2 focus:ring-gray-300"
+                                                    className="inline-flex items-center justify-center w-9 h-9 rounded-md bg-surface-card text-body hover:bg-surface-strong hover:text-ink transition-colors focus:outline-none focus:ring-2 focus:ring-hairline"
                                                 >
                                                     <FaEye className="w-4 h-4" />
                                                 </a>
-                                                {/*  */}
                                                 <button
                                                     onClick={() => handleDelete(file.id)}
                                                     aria-label="Delete file"
                                                     disabled={deletingFileId === file.id}
-                                                    className="inline-flex items-center justify-center px-2.5 py-1.5 rounded-md bg-red-100 text-red-600 text-sm hover:bg-red-200 hover:text-red-700 transition focus:outline-none focus:ring-2 focus:ring-red-300"
+                                                    className="inline-flex items-center justify-center w-9 h-9 rounded-md bg-error/10 text-error hover:bg-error/20 transition-colors focus:outline-none focus:ring-2 focus:ring-error/30"
                                                 >
                                                     <FaTrash className="w-4 h-4" />
                                                 </button>
@@ -209,7 +202,7 @@ const Dashboard = () => {
                                 ))}
                                 {files.length === 0 && (
                                     <tr>
-                                        <td colSpan={5} className="text-center py-10 text-gray-500">
+                                        <td colSpan={5} className="text-center py-10 text-muted">
                                             No files uploaded yet.
                                         </td>
                                     </tr>

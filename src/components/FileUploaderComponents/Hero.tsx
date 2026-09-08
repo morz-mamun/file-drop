@@ -28,13 +28,20 @@ const Hero = () => {
     };
 
     return (
-        <section className="py-16 md:py-24 bg-white">
-            <div className="container mx-auto px-4">
-                <div className="max-w-5xl mx-auto text-center">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                        Upload and share files <span className="text-black">instantly</span>
+        <section className="relative overflow-hidden bg-canvas py-20 md:py-28">
+            <div className="pointer-events-none absolute -top-32 -right-32 h-[28rem] w-[28rem] rounded-full bg-gradient-to-br from-brand-lavender/70 via-brand-lavender/35 to-transparent blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-40 -left-32 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-brand-peach/70 via-brand-peach/35 to-transparent blur-3xl" />
+
+            <div className="container mx-auto px-4 relative">
+                <div className="max-w-3xl mx-auto text-center">
+                    <span className="inline-flex items-center gap-2 rounded-pill bg-surface-card px-4 py-1.5 text-xs font-semibold tracking-wide text-body-strong uppercase mb-6">
+                        Free forever &middot; No signup required
+                    </span>
+
+                    <h1 className="font-display text-5xl md:text-6xl text-ink mb-6">
+                        Upload and share files <span className="text-brand-coral">instantly</span>
                     </h1>
-                    <p className="text-xl text-gray-600 mb-8">
+                    <p className="text-lg md:text-xl text-muted mb-10 max-w-xl mx-auto leading-relaxed">
                         A simple and fast way to upload PDFs and images, and get shareable URLs in seconds.
                     </p>
 
@@ -52,17 +59,17 @@ const Hero = () => {
                             onClick={handleUpload}
                             type="button"
                             disabled={isUploading}
-                            className="px-6 py-3 bg-black text-white rounded-lg font-semibold transition-colors duration-300 cursor-pointer hover:bg-gray-900 disabled:opacity-50"
+                            className="px-7 h-12 bg-primary text-on-primary rounded-md font-semibold transition-opacity cursor-pointer hover:opacity-90 disabled:opacity-50"
                         >
                             {isUploading ? 'Uploading...' : 'Upload Files'}
                         </button>
                     )}
 
                     {/* Feature list */}
-                    <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600 mt-12">
+                    <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm font-medium text-body mt-12">
                         {features.map((feature) => (
-                            <div key={feature} className="flex items-center space-x-2">
-                                <FiCheckCircle className="h-5 w-5 text-black opacity-70" />
+                            <div key={feature} className="flex items-center gap-2">
+                                <FiCheckCircle className="h-5 w-5 text-brand-mint" />
                                 <span>{feature}</span>
                             </div>
                         ))}

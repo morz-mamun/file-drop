@@ -6,17 +6,19 @@ const FilePreview = ({ file, previewUrl, onRemove }: FilePreviewProps) => {
         <div className="relative w-36 h-44 flex flex-col items-center justify-start" onClick={(e) => e.stopPropagation()}>
             {file.type.startsWith('image/') && previewUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={previewUrl} alt={file.name} className="h-32 w-32 object-cover rounded-xl" />
+                <img src={previewUrl} alt={file.name} className="h-32 w-32 object-cover rounded-xl border border-hairline" />
             ) : file.type === 'application/pdf' ? (
-                <FiFile className="h-16 w-16 text-gray-500 mb-1" />
+                <div className="h-32 w-32 rounded-xl bg-surface-card flex items-center justify-center">
+                    <FiFile className="h-12 w-12 text-muted" />
+                </div>
             ) : null}
 
-            <p className="text-xs text-center mt-2 truncate max-w-[8rem]">{file.name}</p>
+            <p className="text-xs text-center mt-2 truncate max-w-[8rem] text-body">{file.name}</p>
 
             <button
                 type="button"
                 onClick={onRemove}
-                className="absolute -top-1 right-1 p-1 rounded-full bg-gray-200 text-gray-600 hover:bg-red-500 hover:text-white transition-all shadow-md"
+                className="absolute -top-1 right-1 p-1 rounded-full bg-canvas text-muted border border-hairline hover:bg-error hover:text-white hover:border-error transition-colors shadow-sm"
                 aria-label={`Remove ${file.name}`}
             >
                 <FiX size={16} />
